@@ -23,9 +23,7 @@ def init_driver(service):
 
     firefoxOptions = Options()
     firefoxOptions.add_argument("--headless")
-    driver = webdriver.Firefox(
-    options=firefoxOptions,
-    service=service,)
+    driver = webdriver.Firefox(options=firefoxOptions,service=service)
     driver.get(URL)
     return driver
 
