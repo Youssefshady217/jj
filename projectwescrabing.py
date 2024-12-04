@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-service = Service(executable_path="jj-main.zip")
+service = Service(executable_path="geckodriver.exe")
 
 def init_driver(service):
     firefox_profile = webdriver.FirefoxProfile()
