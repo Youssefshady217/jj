@@ -7,17 +7,26 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-service = Service(executable_path="geckodriver.exe")
+from selenium.common.exceptions import TimeoutException
+from webdriver_manager.firefox import GeckoDriverManager
+service = Service(GeckoDriverManager().install())
 
 def init_driver(service):
     firefox_profile = webdriver.FirefoxProfile()
     firefox_profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', False)
     firefox_profile.set_preference("media.volume_scale", "0.0")
     firefox_profile.set_preference("dom.webnotifications.enabled", False)
-    options = Options()
-    options.profile = firefox_profile
-    driver = webdriver.Firefox(service=service, options=options)
+    URL = ""
+    TIMEOUT = 20
+
+    st.title("Test Selenium")
+
+    firefoxOptions = Options()
+    firefoxOptions.add_argument("--headless")
+    driver = webdriver.Firefox(
+    options=firefoxOptions,
+    service=service,)
+    driver.get(URL)
     return driver
 
 def scrape_jumia():
